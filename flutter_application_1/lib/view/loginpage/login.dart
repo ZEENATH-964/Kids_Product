@@ -43,8 +43,7 @@ class _LoginState extends State<Login> {
                   top: 10,
                 left: -60,
                   child: circle(Colors.purple)),
-            
-            
+  
                       Positioned(
                 bottom: -5,
                 right: -40,
@@ -59,7 +58,6 @@ class _LoginState extends State<Login> {
                  bottom: -60,
                 right: 5,
                   child: circle(Colors.purple)),
-            
                    //.................
                  Padding(
                    padding: const EdgeInsets.all(10.0),
@@ -172,7 +170,7 @@ class _LoginState extends State<Login> {
     final password=passwordController.text.trim();
 
       if(saveName==null&&savePassword==null){
-      showSnack(context, 'please register account');
+      showSnack(context, Textconstants.registerAc);
       return;
     }
 
@@ -182,10 +180,10 @@ class _LoginState extends State<Login> {
         Navigator.push(context, MaterialPageRoute(
           builder: (ctx)=>Bottom()));
       }else{
-        showSnack(context, 'Username and Password are not correct');
+        showSnack(context, Textconstants.nocurrect);
       }
     }else{
-      showSnack(context, 'please enter usrname and password');
+      showSnack(context, Textconstants.enter);
     }
    
   }

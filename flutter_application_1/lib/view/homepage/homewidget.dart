@@ -1,12 +1,16 @@
- import 'package:flutter/material.dart';
+ import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/decoration/decoration.dart';
 import 'package:flutter_application_1/view/savepage/save.dart';
 
-Widget  list1(String image,String text,BuildContext context) {
+Widget  list1(String image,
+String text,
+BuildContext context,String category) {
     return Container(
               
               
                 decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 253, 161, 219),
+            color: const Color.fromARGB(255, 243, 241, 241),
             borderRadius: BorderRadius.circular(20)
            ),
                 height: 180,
@@ -19,13 +23,12 @@ Widget  list1(String image,String text,BuildContext context) {
                     child: Container(
                       height:130 ,
                       width: 100,
-                      decoration: BoxDecoration(
-                        color:const Color.fromARGB(255, 195, 247, 249) ,
-                        borderRadius: BorderRadius.circular(20)
+                      decoration: commonDecoration(
+                      
                       ),
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Save()));
+                          Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Save(selectedCategory: category,)));
                         } ,
                         child: Image.asset(image)),
                     ),

@@ -1,4 +1,5 @@
 class Textconstants {
+  static const goodmorning='Good Morning';
 static const kids='Kids';
 static const shop='Shop';
   static const login='Login';
@@ -19,10 +20,40 @@ static const shop='Shop';
   static const addimg='Add Image';
   static const name='Name';
   static const price='Price';
-  static const discription='Discription';
+  static const discription='Description';
   static const category='Category';
-  static const color='Color';
+  static const colors='Color';
   static const size='Size';
   static const save='Save';
-
+  static const save1='Saved Items';
+  static const save2='No saved Items';
+  static const carousel='No added image';
+  static const detailstxt='Details Item';
+static const edit="Edit";
+static const delete='Delete';
+static const edittxt='please fill all field ';
+static const update='Update';
+static const  editprf='Edit Profile';
+static const phone='phone';
+static const address='Address';
+static const nodata='no data available';
+static const empty='All fiedls empty';
+static const back='Back';
+static const required='All filelds are required';
+static const gmail='please enter valid gmail address';
+static const charecters='password must be at least 8 charactors';
+static const gmail2='@gmail.com';
+static const noimage='No Image';
+static const noname='No name';
+static const searchitems='Search Items';
+static const registerAc='Please register Account';
+static const nocurrect='Username and password is not correct';
+static const enter='Please enter Username and password';
+static const phno='7306706964';
+static const addrs='Kavttu';
+static const List<String>categoriesLists=['Dress','Toys','Footwear'];
+static const List<String>colorsList=['Black','White','Red','Blue','Green','Black&White'];
+static const List<List<String>>sizeLists=[ ['XS', 'S', 'M', 'L', 'XL'],
+    ['Small', 'Medium', 'Large'],
+    ['3', '4', '5', '6', '7', '8', '9', '10'],];
 }

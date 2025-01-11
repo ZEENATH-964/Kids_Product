@@ -1,5 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/constants/textconstants.dart';
+import 'package:flutter_application_1/functions/dataBase%20function/database.dart';
+import 'package:flutter_application_1/modelbody/product%20model/model.dart';
 import 'package:flutter_application_1/view/Dashboard/dash.dart';
 import 'package:flutter_application_1/view/homepage/home.dart';
 import 'package:flutter_application_1/view/Profile/profile.dart';
@@ -17,7 +20,7 @@ class _BottomState extends State<Bottom> {
   final pages=[
     Home(),
     Search(),
-     Dash(),
+    Dash(),
     Profile(),
   ];
   @override

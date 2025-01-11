@@ -42,7 +42,7 @@ class _SplashState extends State<Splash> {
            ],
          ),
        ),
-    ),
+           ),
     );
   }
   Future<void>_goLogin(BuildContext context)async{
@@ -50,7 +50,7 @@ class _SplashState extends State<Splash> {
     await Future.delayed(Duration(seconds: 5));
   final SharedPreferences pref=await SharedPreferences.getInstance();
   bool? isLoggedIn=pref.getBool('log');
-  if(isLoggedIn!=null){
+  if(isLoggedIn == true){
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx)=>Bottom()));
   }else{
             Navigator.pushReplacement(

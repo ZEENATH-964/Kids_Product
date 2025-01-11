@@ -10,13 +10,19 @@ class UserData {
   @HiveField(2)
   String? password;
   @HiveField(3)
+  String?phoneNumber;
+  @HiveField(4)
+  String?address;
+  @HiveField(5)
   String? image;
 
 
   UserData({
     required this.name,
     required this.email,
-    required this.password,
-    this.image
+     this.password,
+    this.image,
+    this.phoneNumber,
+    this.address
   });
 }

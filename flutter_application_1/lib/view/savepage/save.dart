@@ -1,10 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/constants/imageconstants.dart';
+import 'package:flutter_application_1/constants/textconstants.dart';
+import 'package:flutter_application_1/decoration/decoration.dart';
+import 'package:flutter_application_1/functions/dataBase%20function/database.dart';
+import 'package:flutter_application_1/modelbody/product%20model/model.dart';
 import 'package:flutter_application_1/view/detailspage/details.dart';
-import 'package:gap/gap.dart';
+
 
 
 class Save extends StatefulWidget {
-  const Save({super.key});
+   
+final String selectedCategory;
+     Save({super.key,required this.selectedCategory});
 
   @override
   State<Save> createState() => _SaveState();
@@ -12,58 +21,103 @@ class Save extends StatefulWidget {
 
 class _SaveState extends State<Save> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+  
+  @override
   Widget build(BuildContext context) {
+    // getData();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          
-          title: Text('SAVED ITEMS',style: TextStyle(fontWeight: FontWeight.bold),),
+          backgroundColor:Colors.grey[350],
+          title: Text('${widget.selectedCategory.toUpperCase()}',
+          style: TextStyle(fontWeight: FontWeight.bold,),),
          
         ),
 
 
+        
         body: Container(
-          width: MediaQuery.of(context).size.height,
-          height: MediaQuery.of(context).size.height,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Gap(5),
-                       GestureDetector(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Details()));
-                        },
-                         child: Container(
-                          color:const Color.fromARGB(255, 250, 211, 211),
-                           child: Padding(
-                             padding: const EdgeInsets.all(8.0),
-                             child: Row(
-                              
-                              children: [
-                              CircleAvatar(radius: 30,
-                              backgroundColor: const Color.fromARGB(255, 255, 162, 193),
-                              backgroundImage: AssetImage('images/dressbw-removebg-preview (1).png'),
-                              ),
-                              Gap(20),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                Text('Frock',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                                Text('Girls Partywear',style: TextStyle(color: const Color.fromARGB(255, 223, 33, 169),fontWeight: FontWeight.bold),)
-                              ],),
-                                                   Spacer(),
-                              Text('₹999',style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold),)
-                             ],),
-                           ),
-                           
-                         
+           decoration: commonDecoration(),
+          child: ValueListenableBuilder(
+            valueListenable: kidsNotifierList,
+             builder: (context,List<KidsModel>itemList,Widget?child){
+              List<KidsModel> filteredList=itemList
+              .where((item)=>item.category==widget.selectedCategory).toList();
+
+              
+             return filteredList.isEmpty?
+                   Center(child: Text(Textconstants.save2),)
+              
+             :ListView.separated(itemBuilder: (context,index){
+              final data=filteredList[index];
+               return Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                   child: ListTile(
+                                 
+                    shape: RoundedRectangleBorder(
+                               borderRadius: BorderRadius.circular(15),
+                               side: BorderSide(color:Colors.white, ),
+                            ),
+                    tileColor: Colors.grey[350],
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Details(
+                        index: index,
+                        name:data.name,
+                        price:data.price,
+                        discription:data.discription,
+                        category:data.category,
+                        color:data.color,
+                        size:data.size,
+                        image:data.image
+                      )));
+                    },
+                      
+                      leading: Container(
+                        height: 80,
+                        width: 70,
+                        decoration: BoxDecoration(
+                         color: const Color.fromARGB(255, 227, 224, 224),
+                         borderRadius: BorderRadius.circular(20), 
+                        
+                       ),
+                       child: data.image != null
+                             ? Image.file(
+                           File(data.image!),
+                              fit: BoxFit.cover,
+                             )
+                                : Image.asset(
+                               Imageconstants.addimage,
+                               fit: BoxFit.cover,
                          ),
-                       )
-              ],
-            ),
-          ),
+                             
+                       
+                      ),
+                      title:Text(data.name!,
+                      style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),) , 
+                      subtitle: Text(data.discription!,
+                      style: TextStyle(color: const Color.fromARGB(255, 192, 2, 116),fontSize: 15,fontWeight: FontWeight.bold),),
+                      trailing: Text('₹${data.price!}',style: TextStyle(color: const Color.fromARGB(255, 0, 128, 5),fontSize: 18,fontWeight: FontWeight.bold),),  
+                   ),
+                 ),
+               );
+             },
+              separatorBuilder: (context,index)=>SizedBox.shrink(),
+          
+              
+               itemCount: filteredList.length);
+             
+             }),
         ),
+        
+     
+        
       ),
     );
   }

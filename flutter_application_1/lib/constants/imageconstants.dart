@@ -8,4 +8,8 @@ class Imageconstants {
   static const prflbackgrnd='images/backimg2.jpg';
   static const addbackimg='images/backimg2.jpg';
   static const logimg='images/login img.png';
+  static const prfimage='images/prf1-removebg-preview.png';
+  static const backdetls='images/ba.jpg';
+  static const prf3='images/prf3.jpeg';
+  static const addimage='images/slide9.jpg';
 }
